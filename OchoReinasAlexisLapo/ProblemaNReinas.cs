@@ -1,4 +1,4 @@
-using System.Windows.Forms;
+Ôªøusing System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OchoReinasAlexisLapo
@@ -6,7 +6,7 @@ namespace OchoReinasAlexisLapo
     public partial class Problema8Reinas : Form
     {
         private int numeroReinas = 8;
-        private int celdaSize = 40; // TamaÒo de cada celda en el tablero
+        private int celdaSize = 40; // Tama√±o de cada celda en el tablero
         private int[,] tablero;
         PictureBox[,] P;
 
@@ -19,7 +19,7 @@ namespace OchoReinasAlexisLapo
         {
             pictureBox2.Parent = pictureBox1; // Establece pictureBox1 como el control principal que se encuentra debajo de pictureBox2
             pictureBox2.BackColor = Color.Transparent; // Hace que el fondo de pictureBox2 sea transparente
-            pictureBox2.Location = new Point(0, 0); // Asegura que pictureBox2 se coloque en la misma posiciÛn que pictureBox1
+            pictureBox2.Location = new Point(0, 0); // Asegura que pictureBox2 se coloque en la misma posici√≥n que pictureBox1
             Bitmap emptyBoardImage = new Bitmap(pictureBox2.Width, pictureBox2.Height);
             pictureBox2.Image = emptyBoardImage;
         }
@@ -27,7 +27,7 @@ namespace OchoReinasAlexisLapo
         bool estanAtacandose(int x1, int y1, int x2, int y2)
         {
             // 1. Horizontal y vertical
-            // Las reinas se atacan si coinciden en cualquiera de los dos par·metros
+            // Las reinas se atacan si coinciden en cualquiera de los dos par√°metros
             if ((x1 == x2) || (y1 == y2)) return true;
 
             // 2. Diagonal principal
@@ -134,7 +134,7 @@ namespace OchoReinasAlexisLapo
         {
             if (listaColocacionesListBox.Items.Count <= 0) return;
             int num = listaColocacionesListBox.SelectedIndex;
-            if (num < 0) return; // No se seleccionÛ ning˙n elemento
+            if (num < 0) return; // No se seleccion√≥ ning√∫n elemento
             string s = listaColocacionesListBox.Items[num].ToString();
             mostrarenDataPicture(s, numeroReinas);
 
@@ -143,10 +143,10 @@ namespace OchoReinasAlexisLapo
         {
             const int MaxN = 20;
             int[] M = new int[MaxN]; // el arreglo de colocaciones
-            int p; // n˙mero de reina
-            int k; // n˙mero de opciones de colocaciÛn
+            int p; // n√∫mero de reina
+            int k; // n√∫mero de opciones de colocaci√≥n
 
-            // Obtener el n˙mero de reinas
+            // Obtener el n√∫mero de reinas
             numeroReinas = Convert.ToInt32(numeroReinasTextBox.Text);
 
             // Generar la imagen del tablero
@@ -168,11 +168,11 @@ namespace OchoReinasAlexisLapo
             M[0] = 0;
             k = 0;
 
-            // el ciclo de b˙squeda de colocaciones
+            // el ciclo de b√∫squeda de colocaciones
             while (p > 0) // si p==0, entonces salir del bucle
             {
                 M[p] = M[p] + 1;
-                if (p == numeroReinas) // ˙ltimo Ìtem
+                if (p == numeroReinas) // √∫ltimo √≠tem
                 {
                     if (M[p] > numeroReinas)
                     {
@@ -182,14 +182,14 @@ namespace OchoReinasAlexisLapo
                     {
                         if (!estaAtacando(M, p))
                         {
-                            // fijar la colocaciÛn
+                            // fijar la colocaci√≥n
                             AgregarAListBox(M, numeroReinas);
                             k++;
                             p--;
                         }
                     }
                 }
-                else // no es el ˙ltimo Ìtem
+                else // no es el √∫ltimo √≠tem
                 {
                     if (M[p] > numeroReinas)
                     {
@@ -199,19 +199,19 @@ namespace OchoReinasAlexisLapo
                     {
                         if (!estaAtacando(M, p)) // Si M[p] no se superpone con M[1], M[2], ..., M[p-1]
                         {
-                            p++; // avanzar a la colocaciÛn de la siguiente reina
+                            p++; // avanzar a la colocaci√≥n de la siguiente reina
                             M[p] = 0;
                         }
                     }
                 }
             }
 
-            // mostrar el n˙mero de opciones de colocaciÛn
+            // mostrar el n√∫mero de opciones de colocaci√≥n
             if (k > 0)
             {
                 listaColocacionesListBox.SelectedIndex = 0;
                 listBox1_Click(sender, e);
-                label2.Text = "N˙mero de colocaciones = " + k.ToString();
+                label2.Text = "N√∫mero de colocaciones = " + k.ToString();
             }
         }
 
@@ -250,8 +250,12 @@ namespace OchoReinasAlexisLapo
             using (Graphics g = Graphics.FromImage(pictureBox2.Image))
             {
                 Font font = new Font("Arial", cellSize / 2, FontStyle.Bold);
-                Brush textBrush = new SolidBrush(Color.Red);
-                g.DrawString("X", font, textBrush, x * cellSize, y * cellSize);
+                Brush textBrush = new SolidBrush(Color.Purple);
+
+                // Cambia la "X" por el s√≠mbolo de reina (‚ôõ)
+                char queenSymbol = '\u265B'; // C√≥digo Unicode para el s√≠mbolo de reina negra
+
+                g.DrawString(queenSymbol.ToString(), font, textBrush, x * cellSize, y * cellSize);
                 pictureBox2.Refresh();
             }
         }
@@ -269,9 +273,11 @@ namespace OchoReinasAlexisLapo
             LimpiarPictureBox2();
             LimpiarDataGridView();
             int j = 0;
+
+            char queenSymbol = '\u265B'; // C√≥digo Unicode para el s√≠mbolo de reina negra
+
             for (int i = 0; i < N; i++)
             {
-
                 string xs = "";
                 while (datos[j] != ',')
                 {
@@ -288,9 +294,12 @@ namespace OchoReinasAlexisLapo
                 j++;
                 int x = Convert.ToInt32(xs);
                 int y = Convert.ToInt32(ys);
-                dataGridView1.Rows[y - 1].Cells[x - 1].Value = "X";
+
+                // Cambia "X" por el s√≠mbolo de reina Unicode
+                dataGridView1.Rows[y - 1].Cells[x - 1].Value = queenSymbol.ToString();
                 MostrarEnPictureBox2(x - 1, y - 1);
             }
         }
+
     }
 }
