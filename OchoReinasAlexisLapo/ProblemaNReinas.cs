@@ -5,7 +5,7 @@ namespace OchoReinasAlexisLapo
 {
     public partial class Problema8Reinas : Form
     {
-        private int numeroReinas=8;
+        private int numeroReinas = 8;
         private int celdaSize = 40; // Tamaño de cada celda en el tablero
         private int[,] tablero;
         PictureBox[,] P;
@@ -85,7 +85,7 @@ namespace OchoReinasAlexisLapo
             return false;
         }
 
-//DATAGRIEW
+        //DATAGRIEW
 
         void InicializarDataGridView(int N)
         {
@@ -108,7 +108,7 @@ namespace OchoReinasAlexisLapo
             {
                 for (int j = 0; j < numeroReinas; j++)
                 {
-                    dataGridView1.Rows[i].Cells[j].Value = ""; 
+                    dataGridView1.Rows[i].Cells[j].Value = "";
                 }
             }
         }
@@ -215,12 +215,12 @@ namespace OchoReinasAlexisLapo
             }
         }
 
-           // Picture Box 
- 
+        // Picture Box 
+
         private Bitmap GenerateBoardImage(Size pictureBoxSize, int n)
         {
             int boardSize = Math.Min(pictureBoxSize.Width, pictureBoxSize.Height);
-            int cellSize = boardSize / n; 
+            int cellSize = boardSize / n;
 
             Bitmap boardImage = new Bitmap(boardSize, boardSize);
 
@@ -268,7 +268,7 @@ namespace OchoReinasAlexisLapo
         {
             LimpiarPictureBox2();
             LimpiarDataGridView();
-            int j = 0; 
+            int j = 0;
             for (int i = 0; i < N; i++)
             {
 
@@ -277,7 +277,7 @@ namespace OchoReinasAlexisLapo
                 {
                     xs += datos[j].ToString();
                     j++;
-                } 
+                }
                 j++;
                 string ys = "";
                 while (datos[j] != '-')
@@ -289,7 +289,7 @@ namespace OchoReinasAlexisLapo
                 int x = Convert.ToInt32(xs);
                 int y = Convert.ToInt32(ys);
                 dataGridView1.Rows[y - 1].Cells[x - 1].Value = "X";
-                MostrarEnPictureBox2(x - 1, y - 1); 
+                MostrarEnPictureBox2(x - 1, y - 1);
             }
         }
     }
